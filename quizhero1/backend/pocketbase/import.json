@@ -1,0 +1,98 @@
+{
+  "collections": [
+    {
+      "name": "quizzes",
+      "type": "base",
+      "schema": [
+        {
+          "name": "title",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "thumbnail",
+          "type": "file",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "questions",
+      "type": "base",
+      "schema": [
+        {
+          "name": "quiz",
+          "type": "relation",
+          "options": {
+            "collectionId": "quizzes"
+          },
+          "required": true
+        },
+        {
+          "name": "text",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "image",
+          "type": "file",
+          "required": false
+        },
+        {
+          "name": "options",
+          "type": "json",
+          "required": true
+        },
+        {
+          "name": "correct_index",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "points",
+          "type": "number",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "attempts",
+      "type": "base",
+      "schema": [
+        {
+          "name": "user_id",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "quiz",
+          "type": "relation",
+          "options": {
+            "collectionId": "quizzes"
+          },
+          "required": true
+        },
+        {
+          "name": "score",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "total",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "duration_seconds",
+          "type": "number",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

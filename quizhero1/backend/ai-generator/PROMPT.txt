@@ -1,0 +1,7 @@
+Create a full backend for "QuizHero" with:
+- Auth (email/password, optional Google)
+- Postgres schema: profiles(id, username, avatar_url), quizzes(id, title, description, thumbnail_url, created_by, created_at), questions(id, quiz_id, text, image_url, option1..4, correct_index, points), attempts(id, user_id, quiz_id, score, total, duration_seconds, created_at)
+- REST endpoints: list/create quizzes, list/create questions, submit attempt, get leaderboard
+- Include migrations, Dockerfile, and example JS client calls
+- Provide environment variables and a seed script from local JSON
+Return a ready-to-run Node.js (Express or Fastify) project.

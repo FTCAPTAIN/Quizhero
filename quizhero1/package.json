@@ -1,0 +1,35 @@
+{
+  "name": "quizhero-ultimate-pro",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "frontend": "vite",
+    "backend": "node server/index.js",
+    "dev:all": "concurrently \"npm run frontend\" \"npm run backend\"",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy:firebase": "npm run build && firebase deploy --only hosting"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.1.0",
+    "@capacitor/core": "^6.1.0",
+    "@capacitor/splash-screen": "^6.0.0",
+    "@capacitor/status-bar": "^6.0.0",
+    "@google/genai": "^1.29.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^6.1.0",
+    "@vitejs/plugin-react": "^5.1.0",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^8.0.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.2"
+  }
+}
+

@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom global styles */
+body {
+  @apply bg-gray-50 dark:bg-gray-900 text-gray-900 transition-colors duration-300;
+}
+
+.container {
+  @apply max-w-4xl mx-auto p-4;
+}
+

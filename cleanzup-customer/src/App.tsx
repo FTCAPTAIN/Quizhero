@@ -1,3 +1,0 @@
-import React, {useState} from 'react';
-import MapPicker from './MapPicker';
-export default function App(){const [loc,setLoc]=useState<[number,number]|null>(null);return (<div className="app"><header><h1>Cleanzup — Customer</h1></header><main><p>Book a cleanup in your area</p><MapPicker onSelect={(lat,lng)=>setLoc([lat,lng])}/>{loc&&<div className="card">Selected: {loc[0].toFixed(4)}, {loc[1].toFixed(4)}</div>}</main></div>)}

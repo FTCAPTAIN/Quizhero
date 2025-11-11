@@ -1,0 +1,38 @@
+name: Test LLM Generation (manual)
+on:
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: 'Topic for question generation'
+        required: true
+        default: 'India landmarks'
+      count:
+        description: 'Number of questions to generate'
+        required: false
+        default: '5'
+jobs:
+  test-llm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Node test script
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          node -e "
+          const fetch = require('node-fetch');
+          (async ()=>{
+            const topic = '${{ github.event.inputs.topic }}';
+            const count = parseInt('${{ github.event.inputs.count }}',10) || 5;
+            const prompt = `Create ${count} multiple-choice quiz questions about "${topic}". Return JSON array of objects with text, options, correct_index.`;
+            const r = await fetch('https://api.openai.com/v1/chat/completions', {
+              method: 'POST',
+              headers: { 'Content-Type':'application/json', 'Authorization': 'Bearer ' + process.env.OPENAI_API_KEY },
+              body: JSON.stringify({ model: 'gpt-4o-mini', messages: [{role:'user', content: prompt}], max_tokens:800 })
+            });
+            const j = await r.json();
+            console.log(JSON.stringify(j, null, 2));
+            const txt = j?.choices?.[0]?.message?.content || j?.choices?.[0]?.text || '';
+            console.log('MODEL TEXT:\n', txt);
+          })().catch(e=>{ console.error(e); process.exit(1); });
+          "
