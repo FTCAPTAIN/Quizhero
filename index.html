@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizHero India</title>
+  <link rel="icon" href="/icon.png" type="image/png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#06b6d4">
+  <link rel="apple-touch-icon" href="/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="capacitor.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            'accent': 'var(--accent-color)',
+            'accent-contrast': 'var(--accent-color-contrast)',
+          },
+          boxShadow: {
+            'glow-cyan': '0 0 15px 4px rgba(34, 211, 238, 0.4), 0 0 5px 2px rgba(34, 211, 238, 0.6)',
+          }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      /* Custom utility classes */
+      .bg-stars {
+        background-color: #020418;
+        background-image:
+          radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+          radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+          radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+          radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+        background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+        background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+        background-attachment: fixed;
+      }
+      .bg-sparks {
+        background-image:
+        radial-gradient(circle at 100% 100%, #1e3a8a 0, #1e3a8a 6px, transparent 6px),
+        linear-gradient(to right, #1e3a8a 1px, transparent 1px),
+        linear-gradient(to bottom, #1e3a8a 1px, transparent 1px);
+        background-size: 12px 12px;
+      }
+      .card-glow {
+        box-shadow: 0 0 15px 4px rgba(34, 211, 238, 0.4), 0 0 5px 2px rgba(34, 211, 238, 0.6);
+      }
+      .btn-gradient-orange { background-image: linear-gradient(to right, #fb923c, #f97316); }
+      .btn-gradient-pink { background-image: linear-gradient(to right, #f472b6, #ec4899); }
+      .btn-gradient-cyan { background-image: linear-gradient(to right, #22d3ee, #06b6d4); }
+      .btn-gradient-purple { background-image: linear-gradient(to right, #a78bfa, #8b5cf6); }
+      .btn-gradient-orange-blue { background-image: linear-gradient(to right, #fb923c, #22d3ee); }
+      
+      .btn-gradient-glow {
+        box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.2);
+      }
+      
+      /* Basic Reset & Font */
+      body {
+        @apply font-sans bg-black text-white;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overscroll-behavior: none;
+      }
+      #root {
+        @apply relative w-screen h-screen;
+      }
+      /* Scrollbar styles */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { @apply bg-slate-800; }
+      ::-webkit-scrollbar-thumb { @apply bg-slate-600 rounded; }
+      ::-webkit-scrollbar-thumb:hover { @apply bg-slate-500; }
+      
+      /* Range Input Styles */
+      input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        @apply w-full h-2 bg-slate-700 rounded-lg outline-none;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        @apply w-5 h-5 cursor-pointer rounded-full border-2 border-white;
+        background-color: var(--accent-color, #06b6d4);
+      }
+      input[type="range"]::-moz-range-thumb {
+        @apply w-5 h-5 cursor-pointer rounded-full border-2 border-white;
+        background-color: var(--accent-color, #06b6d4);
+      }
+      
+      /* Animation Keyframes */
+      @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes fade-in-fast { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes pop-in { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+      @keyframes fade-in-down { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes comet-pulse {
+        0% { transform: scale(1); opacity: 0.7; }
+        50% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(1); opacity: 0.7; }
+      }
+      @keyframes rotation {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Utility Classes for Animations */
+      .animate-fade-in { animation: fade-in 0.5s ease-out forwards; }
+      .animate-fade-in-fast { animation: fade-in-fast 0.3s ease-out forwards; }
+      .animate-pop-in { animation: pop-in 0.3s ease-out forwards; }
+      .animate-fade-in-down { animation: fade-in-down 0.3s ease-out forwards; }
+      .animate-comet-pulse { animation: comet-pulse 4s infinite ease-in-out; }
+    }
+  </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <div id="root"></div>
+  <script type="importmap">
+  {
+    "imports": {
+      "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+      "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.0",
+      "react/": "https://aistudiocdn.com/react@^19.2.0/",
+      "react": "https://aistudiocdn.com/react@^19.2.0",
+      "@capacitor/core": "https://aistudiocdn.com/@capacitor/core@^6.1.0",
+      "@capacitor/splash-screen": "https://aistudiocdn.com/@capacitor/splash-screen@^6.0.0",
+      "@capacitor/status-bar": "https://aistudiocdn.com/@capacitor/status-bar@^6.0.0"
+    }
+  }
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234567890123456" crossorigin="anonymous"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

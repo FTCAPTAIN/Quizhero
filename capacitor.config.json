@@ -1,0 +1,20 @@
+{
+  "appId": "com.quizhero.india",
+  "appName": "QuizHero India",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 3000,
+      "launchAutoHide": false,
+      "backgroundColor": "#020418",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": true,
+      "androidSpinnerStyle": "large",
+      "spinnerColor": "#ffffff"
+    }
+  }
+}

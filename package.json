@@ -1,0 +1,23 @@
+{
+  "name": "quizhero-india",
+  "version": "1.0.0",
+  "private": true,
+  "description": "QuizHero India - Android Build",
+  "scripts": {
+    "assets:generate": "npx @capacitor/assets generate --icon-path assets/icon.png --splash-path assets/splash.png --android",
+    "build:android": "npm run assets:generate && npx cap sync android && npx cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.1.0",
+    "@capacitor/core": "^6.1.0",
+    "@capacitor/splash-screen": "^6.0.0",
+    "@capacitor/status-bar": "^6.0.0",
+    "@google/genai": "^1.29.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^6.1.0"
+  }
+}
